@@ -1,10 +1,10 @@
 use VP_module_2
 
 go
-drop trigger if exists trg_Patient
+drop trigger if exists Patient_UPDATE
 go
 
-create trigger trg_Patient ON Patient
+create trigger Patient_UPDATE ON Patient
 AFTER UPDATE
 AS
 BEGIN
