@@ -31,5 +31,5 @@ Duration_in_Seconds int,
 Comission int,
 Transaction_Message varchar(150),
 Type_of_Operation varchar (100),
-Date_of_Operation datetime NOT NULL DEFAULT GETDATE());
+Date_of_Operation datetime  DEFAULT GETDATE());
 
