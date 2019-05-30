@@ -2,37 +2,35 @@
 use VP_module_2
 
 go
-drop table if exists Bank
+drop table if exists User_Info
 go
+CREATE TABLE User_Info(
+id int IDENTITY PRIMARY KEY,
+First_Name varchar(20),
+Last_Name varchar(20),
+Middle_Name varchar(20),
+Birth_Date date,
+Phone_number varchar(30),
+Email_Address varchar(100),
+CardType varchar(50),
+Card_Number varchar(20),
+Card_Expire_date date,
+CVV int,
+Secret_Word varchar(20),
+CurrentBalance decimal);
 
-CREATE TABLE Bank(
-Bank_id int NOT NULL PRIMARY KEY,
-Bank_Name varchar(30),
-Country varchar(30),
-City varchar(30),
-Street varchar(20),
-State_or_Region varchar(20),
-Building varchar(5),
-Number_of_employees int,
-Head varchar(50),
-Rating decimal,
-Bank_type varchar(30),
-date_Of_Foundation date);
+drop table if exists Opertion_History
 go
-drop table if exists Opertion
-go
-CREATE TABLE Operation(
-Operation_id int NOT NULL PRIMARY KEY,
-Bank int FOREIGN KEY REFERENCES Bank(Bank_id),
-Recepient_Name varchar(60),
-Recepient_Phone varchar(30),
-Recepient_CardID varchar(16),
-SenderName varchar(60),
-SenderPhone varchar(30),
-Sender_CardID varchar(16),
+CREATE TABLE Operation_History(
+Operation_id int IDENTITY PRIMARY KEY,
+Bank varchar(100),
+SenderID int FOREIGN KEY REFERENCES User_Info(id),
+ReceiverID int FOREIGN KEY REFERENCES User_Info(id),
 Amount decimal, 
 Duration_in_Seconds int,
 Comission int,
-Operation_Message varchar(150),
+Transaction_Message varchar(150),
 Type_of_Operation varchar (100),
-Date_of_Operation date);
+Date_of_Operation datetime NOT NULL DEFAULT GETDATE());
+
+
