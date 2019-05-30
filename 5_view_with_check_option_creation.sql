@@ -7,3 +7,5 @@ from Patient
 where Last_Name LIKE 'D%'
 with check option;
 go 
+
+
