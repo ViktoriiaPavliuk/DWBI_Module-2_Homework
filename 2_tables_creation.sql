@@ -6,17 +6,17 @@ go
 
 CREATE TABLE Patient(
 Patient_id int NOT NULL PRIMARY KEY,
-First_Name varchar(30),
-Last_Name varchar(30),
+First_Name varchar(30)NOT NULL,
+Last_Name varchar(30)NOT NULL,
 Birth_Date date,
 Phone_Number varchar(20),
 Insurance_number varchar(20) NOT NULL UNIQUE,
-Doctor varchar(50),
+Doctor varchar(50) ,
 Hospital_room int,
-Incerted_date date,
-Updated_date date,
+Incerted_date date DEFAULT GETDATE(),
+Updated_date date DEFAULT GETDATE(),
 CONSTRAINT check_hospital_room
-    CHECK (Hospital_room BETWEEN 1 and 450)
+    CHECK (Hospital_room BETWEEN 1 and 450),
 );
 
 go
@@ -28,12 +28,14 @@ Procedure_id int NOT NULL PRIMARY KEY,
 Procedure_Name varchar(30) NOT NULL ,
 Nurce varchar(60),
 Patient int FOREIGN KEY REFERENCES Patient(Patient_id),
-Room varchar(50),
+Room varchar(50) NOT NULL,
 Price int,
 Duration_min int,
 Frequency varchar(60),
 Incerted_date datetime,
-Updated_date datetime
+Updated_date datetime,
+CONSTRAINT check_price
+    CHECK (Price>=0)
 );
 
 INSERT INTO Patient VALUES 
